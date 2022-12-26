@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+    {% load menubuilder %}{% menu mainmenu %}
+    {% for item in menuitems %}
+    <h1>{{ item.title }}</h1>
+    {% endfor %}
+{% endblock %}

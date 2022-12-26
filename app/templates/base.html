@@ -1,0 +1,35 @@
+{% load static %}
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+      <br>
+    <div class="collapse navbar-collapse" id="navbar-main">
+        {% url 'main' as url %}
+      <ul class="nav navbar-nav">
+          {% load menubuilder %}{% menu mainmenu %}
+          {% for item in menuitems %}<li {% if request.path == url %}class="active"{% endif %}><a href="{{ item.url }}" title="{{ item.title|escape }}"{% if item.current %} class='current'{% endif %}>{{ item.title }}</a></li>
+          {% endfor %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-default">
+  <ul class="nav navbar-nav">
+      {% load menubuilder %}{% menu submenu %}
+      {% for item in menuitems %}<li {% if item.current %}class="active"{% endif %}><a href="{{ item.url }}" title="{{ item.title|escape }}"{% if item.current %} class='current'{% endif %}>{{ item.title }}</a></li>
+      {% endfor %}
+  </ul>
+</nav>
+
+{% block content %} {% endblock %}
+
+
+
